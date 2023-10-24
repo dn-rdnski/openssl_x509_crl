@@ -74,12 +74,12 @@ class X509_CERT
 		
 		//Define subjKeyId
 		$subjKeyId = null;
-		if($cert_root->content[0]->findContext(3) !== null) {
-			$extval_subjKeyId = self::findExtensionVal('subjectKeyIdentifier', $cert_root->content[0]->findContext(3)->content[0]);
-			if($extval_subjKeyId !== null) {
-				$subjKeyId = $extval_subjKeyId->content[0]->getContent();
-			}
-		}
+		//if($cert_root->content[0]->findContext(3) !== null) {
+		//	$extval_subjKeyId = self::findExtensionVal('subjectKeyIdentifier', $cert_root->content[0]->findContext(3)->content[0]);
+		//	if($extval_subjKeyId !== null) {
+		//		$subjKeyId = $extval_subjKeyId->content[0]->getContent();
+		//	}
+		//}
 		if($subjKeyId === null) {
 			$subjPubKey = $cert_root->content[0]->content[$is_v1 ? 5 : 6]->content[1]->getNormalizedBitstring();
 			$subjKeyId = ASN1::hex_str2bin(sha1($subjPubKey));
